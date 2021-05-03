@@ -1,5 +1,5 @@
 var pos=[15];
-var foodPos=[18];
+var foodPos=[18,74];
 
 var canvas=document.getElementById("myCanvas");
 var ctx=canvas.getContext("2d");
@@ -52,13 +52,6 @@ function randNo()
 }
 
 
-function drawFood(){
-    ctx.beginPath();
-ctx.arc(x,y,10,0,Math.PI*2);
-ctx.fillStyle="green";
-ctx.fill();
-ctx.closePath();
-}
 
 function drawVertLines(){
  for( i =0;i<=canvas.height;i+=celldim){
@@ -111,9 +104,16 @@ function snakeCell(){
 function drawFood(){
     
     for(i=0;i<foodPos.length;i++){
-    
-    foodY=celldim*Math.floor(foodPos[i]/10);
-    foodX=celldim*((foodPos[i]%10)-1);
+        if(foodPos[i]%10==0){
+            foodY=celldim*((foodPos[i]/10)-1);
+            foodX=celldim*9;
+   
+        }   
+       else{
+       foodY=celldim*Math.floor(foodPos[i]/10);
+       foodX=celldim*((foodPos[i]%10)-1);
+       }
+   
 
 
     ctx.beginPath();
@@ -198,12 +198,6 @@ if(checkSelfCollision()){
     drawHorizLines();
 
     
- 
-
-
-
-    
-
 
 }
 
